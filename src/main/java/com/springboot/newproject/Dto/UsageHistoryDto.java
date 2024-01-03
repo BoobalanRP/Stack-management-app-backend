@@ -1,12 +1,13 @@
 package com.springboot.newproject.Dto;
 
-import com.springboot.newproject.entity.Stack;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -15,42 +16,14 @@ import java.util.Collection;
 @Component
 public class UsageHistoryDto {
 
+    private Long id;
     private String frontendBranch;
 
     private String backendBranch;
     private String userEmail;
+    private Long stackId;
+    private LocalDateTime startedAt;
+    private LocalDateTime endedAt;
 
-    private int stackId;
 
-    public String getFrontendBranch() {
-        return frontendBranch;
-    }
-
-    public void setFrontendBranch(String frontendBranch) {
-        this.frontendBranch = frontendBranch;
-    }
-
-    public String getBackendBranch() {
-        return backendBranch;
-    }
-
-    public void setBackendBranch(String backendBranch) {
-        this.backendBranch = backendBranch;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public int getStackId() {
-        return stackId;
-    }
-
-    public void setStackId(int stackId) {
-        this.stackId = stackId;
-    }
 }

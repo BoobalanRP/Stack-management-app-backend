@@ -2,6 +2,10 @@ package com.springboot.newproject.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -12,56 +16,24 @@ import lombok.*;
 public class UsageHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @NonNull
+    private Long id;
+
     private String frontendBranch;
 
-    @NonNull
     private String backendBranch;
 
     private String userEmail;
 
-    @ManyToOne // Many UsageHistory entities to One Stack entity
-    @JoinColumn(name = "stack_id")
+
+    @ManyToOne
+   //@JoinColumn(name = "stack_id")
     private Stack stack;
 
-    public int getId() {
-        return id;
-    }
+    @CreationTimestamp
+    private LocalDateTime startedAt;
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getFrontendBranch() {
-        return frontendBranch;
-    }
+    @Column(columnDefinition = "Datetime default null")
+    private LocalDateTime endedAt;
 
-    public void setFrontendBranch(String frontendBranch) {
-        this.frontendBranch = frontendBranch;
-    }
-
-    public String getBackendBranch() {
-        return backendBranch;
-    }
-
-    public void setBackendBranch(String backendBranch) {
-        this.backendBranch = backendBranch;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public Stack getStack() {
-        return stack;
-    }
-
-    public void setStack(Stack stack) {
-        this.stack = stack;
-    }
 }

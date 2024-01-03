@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class UsageHistoryController {
 
     @Autowired
@@ -19,11 +20,11 @@ public class UsageHistoryController {
     }
 
     @GetMapping("/usagehistory/{id}")
-   public List<UsageHistory> fetchUsageHistoryListByStackId(@PathVariable("id") int stackId){
+   public List<UsageHistory> fetchUsageHistoryListByStackId(@PathVariable("id") Long stackId){
         return usageHistoryService.fetchUsageHistoryListByStackId(stackId);
     }
 
-    @PostMapping("/stacks/use")
+    @PostMapping("/stack/use")
     public UsageHistory saveUsageHistory(@RequestBody UsageHistoryDto usageHistoryDto){
         return usageHistoryService.saveUsageHistoryDto(usageHistoryDto);
     }

@@ -25,7 +25,7 @@ public class UsageHistoryServiceImpl implements UsageHistoryService{
     }
 
     @Override
-    public List<UsageHistory> fetchUsageHistoryListByStackId(int stackId) {
+    public List<UsageHistory> fetchUsageHistoryListByStackId(Long stackId) {
         return usageHistoryRepository.findByStackId(stackId);
     }
 
@@ -42,6 +42,7 @@ public class UsageHistoryServiceImpl implements UsageHistoryService{
         usageHistory.setBackendBranch(usageHistoryDto.getBackendBranch());
         usageHistory.setFrontendBranch(usageHistoryDto.getFrontendBranch());
 
+
         String su = usageHistoryDto.getUserEmail();
         usageHistory.setUserEmail(su);
         // Set stack ID
@@ -55,7 +56,17 @@ public class UsageHistoryServiceImpl implements UsageHistoryService{
         return  usageHistoryRepository.save(usageHistory);
     }
 
+    @Override
+    public UsageHistory fetchActiveUsageHistoryByStackId(Long stackId) {
+        return usageHistoryRepository.findActiveUsageHistoryByStackId(stackId);
+    }
 
+
+    @Override
+    public void updateEndedAtForUsageHistoryByStackId(Long stackId) {
+         usageHistoryRepository.updateEndedAtForUsageHistoryByStackId(stackId);
+
+    }
 
 
 }

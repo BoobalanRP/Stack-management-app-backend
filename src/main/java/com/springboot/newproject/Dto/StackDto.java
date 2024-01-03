@@ -1,29 +1,32 @@
-package com.springboot.newproject.entity;
+package com.springboot.newproject.Dto;
 
-import jakarta.persistence.*;
+import com.springboot.newproject.entity.UsageHistory;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.CascadeType;
+
+import org.springframework.stereotype.Component;
 
 @Data
-@Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@Table(name = "stacks")
-public class Stack {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Component
+public class StackDto {
     private Long id;
     private String name;
-
     private String environment;
 
-    @Builder.Default
-    @Column(columnDefinition = "boolean default true")
-    private Boolean availability = true;
+
+    private Boolean availability;
+
+   // @OneToMany(mappedBy = "stack", cascade = CascadeType.ALL)
+    private UsageHistory usageHistory;
 
     public Long getId() {
         return id;
@@ -57,5 +60,12 @@ public class Stack {
         this.availability = availability;
     }
 
+    public UsageHistory getUsageHistory() {
+        return usageHistory;
+    }
+
+    public void setUsageHistory(UsageHistory usageHistory) {
+        this.usageHistory = usageHistory;
+    }
 
 }

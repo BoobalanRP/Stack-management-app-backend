@@ -10,9 +10,13 @@ import java.util.List;
 public interface UsageHistoryService {
     public List<UsageHistory> fetchUsageHistoryList();
 
-   public List<UsageHistory> fetchUsageHistoryListByStackId(int stackId);
+   public List<UsageHistory> fetchUsageHistoryListByStackId(Long stackId);
 
     public UsageHistory saveUsageHistoryDto(UsageHistoryDto usageHistory);
 
 
+    UsageHistory fetchActiveUsageHistoryByStackId(Long stackId);
+
+
+    void updateEndedAtForUsageHistoryByStackId(Long stackId);
 }
